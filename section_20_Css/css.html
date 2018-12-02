@@ -16,13 +16,24 @@
         }
 
         #principal{
-            width: 400px;
-            /* margin: 0 auto; */
+            width: 730px;
+            margin: 0 auto;
             background-color: #9c3;
+            padding: 10px;
+            overflow: hidden;
         }
-
-        #janela{
-            width: 300px;
+        
+        /* #principal:after{
+            content: "";
+            display: table;
+            clear: both;
+        } */
+        .janela{
+            float: left;
+            width: 350px;
+            background-color: blueviolet;
+            padding: 5px;
+            margin-right: 5px;
         }
 
         p{
@@ -32,7 +43,14 @@
 </head>
 <body>
     <div id="principal">
-        <div id="janela">
+        <div class="janela">
+            <p>
+                O café é uma bebida produzida a partir dos grãos torrados do fruto do cafeeiro. É servido tradicionalmente quente, mas também pode ser consumido gelado.
+                Estudos têm mostrado que pessoas que bebem quatro xícaras de café por dia têm um menor risco de morrer de um ataque cardíaco. Em alguns períodos da década de 1980,
+                o café era a segunda mercadoria mais negociada no mundo por valor monetário, atrás apenas do petróleo.
+            </p>
+        </div>
+        <div class="janela">
             <p>
                 O café é uma bebida produzida a partir dos grãos torrados do fruto do cafeeiro. É servido tradicionalmente quente, mas também pode ser consumido gelado.
                 Estudos têm mostrado que pessoas que bebem quatro xícaras de café por dia têm um menor risco de morrer de um ataque cardíaco. Em alguns períodos da década de 1980,
