@@ -124,7 +124,7 @@
                     paragraph = item.snippet.description;
                     datePublic = formatDate(item.snippet.publishedAt);
                     videoId = item.snippet.resourceId.videoId;
-                    file = "<li class='principal'><a data-fancybox href='https://youtube.com/watch?v="+ videoId +"'><div class='foto'><div class='legenda'><h5>"+ title +"</h5><p>"+ datePublic +"</p></div><img src = '"+ imagem +"'></div></a></li>";
+                    file = '<li><iframe width="320" height="180" src="https://www.youtube.com/embed/'+ videoId +'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>';
                     $("div#janela").append(file);
                 });
             });
