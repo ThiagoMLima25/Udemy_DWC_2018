@@ -1,30 +1,31 @@
 <?php
     require_once("connection/connection.php");
-
+    
     //iniciar sessão
     session_start();
+    
+    if(isset($_POST["nometransportadora"])){
+        $nome = $_POST["nometransportadora"];
+        $endereco = $_POST["endereco"];
+        $cidade = $_POST["cidade"];
+        $estado = $_POST["estado"];
+        $cep = $_POST["cep"];
+        $cnpj = $_POST["cnpj"];
+        $telefone = $_POST["telefone"];
 
-    if(isset($_POST["usuario"])){
-        $usuario = $_POST["usuario"];
-        $senha = $_POST["senha"];
+        $inserir = "INSERT INTO transportadoras (nometransportadora, endereco, telefone, cidade, estadoID, cep, cnpj) VALUES ('$nome', '$endereco', '$telefone', '$cidade', $estado, '$cep', '$cnpj')";
+        $operacaoInserir = mysqli_query($con, $inserir);
 
-        $login = "SELECT * ";
-        $login .= "FROM clientes ";
-        $login .= "WHERE usuario = '{$usuario}' and senha = '{$senha}' ";
-
-        $acesso = mysqli_query($con, $login);
-        if(!$acesso){
-            die("Falha na consulta ao banco");
+        if(!$operacaoInserir){
+            die("Erro ao Inserir ao banco");
         }
+    }
 
-        $informacao = mysqli_fetch_assoc($acesso);
+    $select = "SELECT estadoID, nome FROM estados";
+    $listEstados = mysqli_query($con, $select);
 
-        if(empty($informacao)){
-            $mensagem = "Login sem sucesso";
-        }else{
-            $_SESSION["user"] = $informacao["clienteID"];
-           header("location:inicial.php");
-        }
+    if(!$listEstados){
+        die("Erro de consulta no banco");
     }
 ?>
 <!doctype html>
@@ -35,9 +36,7 @@
         
         <!-- estilo -->
         <link href="_css/estilo.css" rel="stylesheet">
-        <link href="_css/produtos.css" rel="stylesheet">
-        <link href="_css/produto_pesquisa.css" rel="stylesheet">
-        <link href="_css/login.css" rel="stylesheet">
+        <link href="_css/crud.css" rel="stylesheet">
     </head>
 
     <body>
@@ -48,23 +47,23 @@
         </header>
         
         <main>
-            <?php
-                if(isset($_SESSION["user"])){
-                    $_SESSION["user"];
-                }
-            ?>
-            <div id="janela_login">
-                <form action="login.php" method="POST">
-                    <h2>Tela de Login</h2>
-                    <input type="text" name="usuario" placeholder="Usuário">
-                    <input type="password" name="senha" placeholder="Senha">
-                    <input type="submit" value="Login">
-
-                    <?php
-                        if(isset($mensagem)){
-                            echo "<p>$mensagem</p>";
-                        }
-                    ?>
+            <div id="janela_formulario">
+                <form action="cadastro.php" method="POST">
+                    <input type = "text" name = "nometransportadora" placeholder = "Nome da Transportadora">
+                    <input type = "text" name = "endereco" placeholder = "Endereço">
+                    <input type = "text" name = "telefone" placeholder = "Telefone">
+                    <input type = "text" name = "cidade" placeholder = "Cidade">
+                    <select name="estado">
+                        <?php
+                            while($linha = mysqli_fetch_assoc($listEstados)){
+                                echo "<option value=". $linha["estadoID"] .">". utf8_encode($linha["nome"]) ."</option>";
+                            }
+                        ?>
+                    </select>
+                    
+                    <input type = "text" name = "cep" placeholder = "CEP">
+                    <input type = "text" name = "cnpj" placeholder = "CNPJ">
+                    <input type = "submit" value="inserir">
                 </form>
             </div>
         </main>

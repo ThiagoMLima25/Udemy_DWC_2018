@@ -46,7 +46,7 @@ main div#janela_formulario form input[type="text"] {
 
 main div#janela_formulario form select {
     margin-bottom: 25px;
-}
+} 
 
 main div#janela_formulario form input[type="submit"] {
     display: block;

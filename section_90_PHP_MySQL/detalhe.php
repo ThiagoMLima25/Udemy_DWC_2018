@@ -58,7 +58,7 @@
             <div id="listagem_produtos">
                 <ul>
                     <li class="imagem"><img src="<?php echo $imagemgrande ?>"></li>
-                    <li><h3><?php echo $nomeproduto ?></h3></li>
+                    <li><h3><?php echo utf8_encode($nomeproduto) ?></h3></li>
                     <li><b>Descrição:</b><?php echo $descricao ?></li>
                     <li><b>Código de Barra : </b><?php echo $codigobarra ?></li>
                     <li><b>Tempo de Entrega : </b><?php echo $tempoentrega ?></li>

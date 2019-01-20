@@ -53,7 +53,7 @@
                                 <img src="<?=$linha["imagempequena"]?>">
                             </a>
                         </li>
-                        <li><h3><?=$linha["nomeproduto"]?></h3></li>
+                        <li><h3><?=utf8_encode($linha["nomeproduto"])?></h3></li>
                         <li>Tempo de Entrega: <?=$linha["tempoentrega"]?></li>
                         <li>Preco unitario : <?="R$ " , number_format($linha["precorevenda"], 2, ',', '.') ?></li>
                     </ul>
